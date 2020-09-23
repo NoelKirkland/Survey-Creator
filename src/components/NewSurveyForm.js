@@ -10,7 +10,7 @@ function NewSurveyForm(props) {
   function addSurveyToFirestore(event) {
     event.preventDefault();
 
-    props.onNewPostCreation();
+    props.onNewSurveyCreation();
 
     return firestore.collection("surveys").add({
       name: event.target.name.value,
@@ -39,7 +39,7 @@ function NewSurveyForm(props) {
   );
 }
 NewSurveyForm.propTypes = {
-  onNewPostCreation: PropTypes.func,
+  onNewSurveyCreation: PropTypes.func,
 };
 
 export default NewSurveyForm;

@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
-import "bootstrap/dist/css/bootstrap.min.css";
+
 
 function ReusableSurveyForm(props) {
   return (
@@ -62,7 +62,7 @@ function ReusableSurveyForm(props) {
           placeholder='Question 3 Value 3' /><br />
         <Button type='submit'>{props.buttonText}</Button>
       </Form>
-    </React.Fragment >
+    </React.Fragment>
   );
 }
 ReusableSurveyForm.propTypes = {
