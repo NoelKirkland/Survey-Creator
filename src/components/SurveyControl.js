@@ -24,4 +24,4 @@ class SurveyControl extends React.Component {
 
 }
 
-export default PostControl;
+export default SurveyControl;
