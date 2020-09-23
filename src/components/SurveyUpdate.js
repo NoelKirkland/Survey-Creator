@@ -1,5 +1,5 @@
 import React from "react";
-import ReusableForm from "./ReusableServey";
+import ReusableSurvey from "./ReusableSurvey";
 import PropTypes from "prop-types";
 import { useFirestore } from "react-redux-firebase";
 
@@ -33,6 +33,18 @@ function SurveyUpdateForm(props) {
 
   return (
     <React.Fragment>
-      <ReusableForm
-  )
+      <ReusableSurvey
+        formSubmissionHandler={handleEditSurveyFormSubmission}
+        buttonText="Update Survey"
+      />
+    </React.Fragment >
+  );
 }
+
+SurveyUpdateForm.propTypes = {
+  onEditSurvey: PropTypes.func
+};
+
+export default SurveyUpdateForm;
+
+
