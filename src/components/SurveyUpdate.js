@@ -46,5 +46,3 @@ SurveyUpdateForm.propTypes = {
 };
 
 export default SurveyUpdateForm;
-
-
