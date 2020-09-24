@@ -11,7 +11,6 @@ import { withFirestore, isLoaded } from "react-redux-firebase";
 
 class SurveyControl extends React.Component {
 
-
   constructor(props) {
     super(props);
     this.state = {
@@ -20,20 +19,20 @@ class SurveyControl extends React.Component {
     };
   }
 
-  /*   componentDidMount() {
-      this.waitTimeUpdateTimer = setInterval(
-        () => this.updateTicketElapsedWaitTime(),
-        6000
-      );
-    }
-  
-    componentWillUnmount() {
-      clearInterval(this.waitTimeUpdateTimer);
-    }
-  
-    updateTicketElapsedWaitTime = () => {
-      const { dispatch } = this.props;
-    }; */
+  componentDidMount() {
+    this.waitTimeUpdateTimer = setInterval(
+      () => this.updateTicketElapsedWaitTime(),
+      6000
+    );
+  }
+
+  componentWillUnmount() {
+    clearInterval(this.waitTimeUpdateTimer);
+  }
+
+  updateTicketElapsedWaitTime = () => {
+    const { dispatch } = this.props;
+  };
 
   handleClick = () => {
     if (this.state.selectedSurvey != null) {
@@ -54,13 +53,32 @@ class SurveyControl extends React.Component {
     dispatch(action);
   };
 
+  handleAddingNewResponseToList = () => {
+    const { dispatch } = this.props;
+    const action = a.toggleForm();
+    dispatch(action);
+  };
+
   handleChangingSelectedSurvey = (id) => {
     this.props.firestore
       .get({ collection: "surveys", doc: id })
       .then((survey) => {
         const firestoreSurvey = {
           name: survey.get("name"),
+          q1: survey.get("q1"),
+          q1a1: survey.get("q1a1"),
+          q1a2: survey.get("q1a2"),
+          q1a3: survey.get("q1a3"),
+          q2: survey.get("q2"),
+          q2a1: survey.get("q2a1"),
+          q2a2: survey.get("q2a2"),
+          q2a3: survey.get("q2a3"),
+          q3: survey.get("q3"),
+          q3a1: survey.get("q3a1"),
+          q3a2: survey.get("q3a2"),
+          q3a3: survey.get("q3a3"),
           id: survey.id,
+
         };
         this.setState({ selectedSurvey: firestoreSurvey });
       });
@@ -115,6 +133,7 @@ class SurveyControl extends React.Component {
             survey={this.state.selectedSurvey}
             onClickingDelete={this.handleDeletingSurvey}
             onClickingEdit={this.handleEditClick}
+            onNewResponseCreation={this.handleAddingNewResponseToList}
           />
         );
         buttonText = "Return to Survey List";

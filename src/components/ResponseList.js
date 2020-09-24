@@ -4,7 +4,6 @@ import { useSelector } from "react-redux";
 import { useFirestoreConnect, isLoaded } from "react-redux-firebase";
 
 function ResponseList() {
-
   useFirestoreConnect([{ collection: "responses" }]);
 
   const responses = useSelector((state) => state.firestore.ordered.responses);
