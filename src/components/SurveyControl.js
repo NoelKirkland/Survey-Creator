@@ -3,6 +3,7 @@ import AddSurveyForm from "./NewSurveyForm";
 import SurveyList from "./SurveyList";
 import SurveyDetail from "./SurveyDetail";
 import SurveyEdit from "./SurveyUpdate";
+import ResponseComplete from './ResponseComplete';
 import { connect } from 'react-redux';
 import * as a from "./../actions";
 import { withFirestore, isLoaded } from "react-redux-firebase";
@@ -15,7 +16,8 @@ class SurveyControl extends React.Component {
     super(props);
     this.state = {
       selectedSurvey: null,
-      editing: false
+      editing: false,
+      responseComplete: false,
     };
   }
 
@@ -54,9 +56,10 @@ class SurveyControl extends React.Component {
   };
 
   handleAddingNewResponseToList = () => {
-    const { dispatch } = this.props;
-    const action = a.toggleForm();
-    dispatch(action);
+    this.setState({
+      selectedSurvey: null,
+      responseComplete: true
+    })
   };
 
   handleChangingSelectedSurvey = (id) => {
@@ -137,6 +140,10 @@ class SurveyControl extends React.Component {
           />
         );
         buttonText = "Return to Survey List";
+      } else if (this.state.responseComplete === true) {
+        currentlyVisibleState = (
+          <ResponseComplete />
+        )
       } else if (this.props.formVisibleOnPage) {
         currentlyVisibleState = (
           <AddSurveyForm
